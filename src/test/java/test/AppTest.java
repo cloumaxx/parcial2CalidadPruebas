@@ -5,13 +5,70 @@
 package test;
 import static org.junit.Assert.assertTrue;
 
-import org.junit.Test;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
+import org.junit.Test;
+import AgendaCronograma.Grafo;
+import AgendaCronograma.Nodo;
+
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
 /**
  *
  * @author Carlos_Eduardo
  */
 public class AppTest {
-//    App app;
+    public static Grafo listado;
+
+    public AppTest() {
+    	
+    }
+    @BeforeClass
+    public static void setUpClass() {
+        listado = new Grafo();
+    }
     
+    @AfterClass
+    public static void tearDownClass() {
+    }
+    
+    @Before
+    public void setUp() {
+    }
+    
+    @After
+    public void tearDown() {
+    }
+    // prueba que verifica que si se guarden objetos en el listado
+    @Test
+    public void testInsertarConcepto() throws ParseException {
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        Date objDate =null;
+
+        Nodo nuevo = new Nodo("Desayuno","1",df.parse("01/01/2021"),df.parse("20/10/2002"),0," ");
+        listado.addNodo(nuevo);
+        
+        Nodo nuevo2 = new Nodo("almuerzo","12",df.parse("03/01/2021"),df.parse("10/10/2002"),1," ");
+        listado.addNodo(nuevo2);
+        Nodo nuevo3 = new Nodo("cena","13",df.parse("05/01/2021"),df.parse("08/10/2002"),5," ");
+        listado.addNodo(nuevo3);
+        Nodo nuevo4 = new Nodo("postre cena","13",df.parse("10/01/2022"),df.parse("08/10/2002"),0," ");
+        listado.addNodo(nuevo4);
+        
+        listado.addArista(nuevo, nuevo2, 0);
+        int cantidadNodos=listado.getCantNodos();
+        
+        boolean existe = false;
+        if (cantidadNodos==4) {
+        	existe=true;
+        }
+        assertEquals(true, existe);
+    }
+
 }

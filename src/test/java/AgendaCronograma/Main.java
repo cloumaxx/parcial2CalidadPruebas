@@ -58,7 +58,7 @@ public class Main {
         Nodo nuevo = new Nodo("Desayuno","1",df.parse("01/01/2021"),df.parse("20/10/2002"),distancia1," ");
         listado.addNodo(nuevo);
         
-         Nodo nuevo2 = new Nodo("almuerzo","12",df.parse("03/01/2021"),df.parse("10/10/2002"),distancia2," ");
+        Nodo nuevo2 = new Nodo("almuerzo","12",df.parse("03/01/2021"),df.parse("10/10/2002"),distancia2," ");
         listado.addNodo(nuevo2);
         Nodo nuevo3 = new Nodo("cena","13",df.parse("05/01/2021"),df.parse("08/10/2002"),distancia3," ");
         listado.addNodo(nuevo3);
