@@ -15,12 +15,12 @@ set +x
 
 echo 'El siguiente comando encuentra el nombre del projecto buscandolo en pom.xml'
 set -x
-NAME=$(mvn help:evaluate -Dexpression=project.name | grep "^[^\[]")
+NAME=`mvn help:evaluate -Dexpression=project.name | grep "^[^\[]"`
 set +x
 
 echo 'Lo mismo pero con la version'
 set -x
-VERSION=$(mvn help:evaluate -Dexpression=project.version | grep "^[^\[]")
+VERSION=`mvn help:evaluate -Dexpression=project.version | grep "^[^\[]"`
 set +x
 
 echo 'Aqui se ejecuta la aplicación Java (que Jenkins construyó con Maven)'
