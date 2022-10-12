@@ -25,7 +25,7 @@ docker run \
 --detach \
 --privileged \
 --network jenkins \
---env DOCKER_TLS_CERTIDR=/certs \
+--env DOCKER_TLS_CERTDIR=/certs \
 --network-alias docker \
 --volume jenkins_data:/var/jenkins_home \
 --publish 2376:2376 \
