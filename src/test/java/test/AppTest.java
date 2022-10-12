@@ -137,4 +137,55 @@ public class AppTest {
         String arista = listado.getDetalleAristas();
         assertNotEquals("Antes va: cena ,despues de: 0 dias, Sigue: desayuno", arista);
     }
+    //
+    @Test
+    public void TestMesErroneo() throws ParseException{
+    	SimpleDateFormat df = new SimpleDateFormat ("dd/MM/yyyy");
+    	Date objDate = null;
+    	boolean Sirve = true;
+    	
+    	try {
+    		Nodo nuevo = new Nodo("Celebracion","12",df.parse("12/sep/2022"), df.parse("12/sep/2022"),1," ");
+    		listado.addNodo(nuevo);
+ 
+    	} catch(Exception e) {
+    		assertEquals(true, Sirve);
+    	}
+    	
+    	
+    }
+    
+    //Prueba para saber que el programa no recibe cualquier parametro
+    @Test
+    public void TestFalseMesErroneo() throws ParseException{
+    	SimpleDateFormat df = new SimpleDateFormat ("dd/MM/yyyy");
+    	Date objDate = null;
+    	boolean Sirvio = false;
+    	
+    	try {
+    		Nodo nuevo = new Nodo("Celebracion","12",df.parse("hola"), df.parse("hola"),1," ");
+    		listado.addNodo(nuevo);
+ 
+    	} catch(Exception e) {
+    	Sirvio = true;
+    	}
+    	assertEquals(true,Sirvio);
+    	
+    }
+    
+    //Prueba falsa que verifica que extraiga la arista correcta
+    @Test
+    public void testFallaCantNodos() throws ParseException {
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        Date objDate =null;
+        boolean Con = false;
+
+        try {
+        	  Nodo nuevo = new Nodo("Desayuno","1",df.parse("No hay desayuno"),df.parse("No hay desayuno"),0," ");
+              listado.addNodo(nuevo);
+        } catch (Exception e) {
+        	Con = true;
+        }
+        assertEquals(true,Con);
+    }
 }
