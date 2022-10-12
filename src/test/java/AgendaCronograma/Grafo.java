@@ -154,17 +154,18 @@ private ArrayList<Nodo> actividades;
         return maximo;
     }
     public void caminoCorto(){
-         SimpleDateFormat dateFormat = new 
-                SimpleDateFormat ("yyyy-MM-dd");
-        ArrayList<Nodo>camino=new ArrayList<Nodo>();
-        Nodo inicio= conexiones.get(0).getOrigen();
-        Nodo termina= conexiones.get(conexiones.size()-1).getOrigen();
-        boolean fin=true;
-        
-        
-        
-        System.out.println(dateFormat.format(inicio.getFechaIni())+" : "+dateFormat.format(camino.get(0).getFechaIni()));
-    }
+        SimpleDateFormat dateFormat = new 
+               SimpleDateFormat ("yyyy-MM-dd");
+       ArrayList<Nodo>camino=new ArrayList<Nodo>();
+       Nodo inicio= conexiones.get(0).getOrigen();
+       Nodo termina= conexiones.get(conexiones.size()-1).getOrigen();
+       boolean fin=true;
+       
+       
+       
+       System.out.println(dateFormat.format(inicio.getFechaIni())+" : "+dateFormat.format(camino.get(0).getFechaIni()));
+   }
+    
     public void addAristaEntre(Nodo valAgregar,int duracion){
         
         SimpleDateFormat dateFormat = new 

@@ -70,5 +70,71 @@ public class AppTest {
         }
         assertEquals(true, existe);
     }
+    
+    // prueba que verifica que se calcule el tiempo correcto
+    @Test
+    public void testCalcularTiempo() throws ParseException {
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        Date objDate =null;
 
+        Nodo nuevo = new Nodo("Desayuno","1",df.parse("01/01/2021"),df.parse("20/10/2002"),0," ");
+        listado.addNodo(nuevo);
+        
+        Nodo nuevo2 = new Nodo("almuerzo","12",df.parse("03/01/2021"),df.parse("10/10/2002"),1," ");
+        listado.addNodo(nuevo2);
+        Nodo nuevo3 = new Nodo("cena","13",df.parse("05/01/2021"),df.parse("08/10/2002"),5," ");
+        listado.addNodo(nuevo3);
+        Nodo nuevo4 = new Nodo("postre cena","13",df.parse("10/01/2022"),df.parse("08/10/2002"),0," ");
+        listado.addNodo(nuevo4);
+        
+        listado.addArista(nuevo, nuevo2, 0);
+        
+        int tiempo = listado.calcularTiempo();
+        assertEquals(12, tiempo);
+    }
+
+    // prueba negativa para comprobar la cantidad de nodosA
+    @Test
+    public void testCantNodos() throws ParseException {
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        Date objDate =null;
+
+        Nodo nuevo = new Nodo("Desayuno","1",df.parse("01/01/2021"),df.parse("20/10/2002"),0," ");
+        listado.addNodo(nuevo);
+        
+        Nodo nuevo2 = new Nodo("almuerzo","12",df.parse("03/01/2021"),df.parse("10/10/2002"),1," ");
+        listado.addNodo(nuevo2);
+        Nodo nuevo3 = new Nodo("cena","13",df.parse("05/01/2021"),df.parse("08/10/2002"),5," ");
+        listado.addNodo(nuevo3);
+        Nodo nuevo4 = new Nodo("postre cena","13",df.parse("10/01/2022"),df.parse("08/10/2002"),0," ");
+        listado.addNodo(nuevo4);
+        
+        listado.addArista(nuevo, nuevo2, 0);
+        
+        int cantidad = listado.getCantNodos();
+        assertNotEquals(4, cantidad);
+    }
+    
+
+    // prueba que verifica que extraiga la arista correcta
+    @Test
+    public void testDetalleArista() throws ParseException {
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        Date objDate =null;
+
+        Nodo nuevo = new Nodo("Desayuno","1",df.parse("01/01/2021"),df.parse("20/10/2002"),0," ");
+        listado.addNodo(nuevo);
+        
+        Nodo nuevo2 = new Nodo("almuerzo","12",df.parse("03/01/2021"),df.parse("10/10/2002"),1," ");
+        listado.addNodo(nuevo2);
+        Nodo nuevo3 = new Nodo("cena","13",df.parse("05/01/2021"),df.parse("08/10/2002"),5," ");
+        listado.addNodo(nuevo3);
+        Nodo nuevo4 = new Nodo("postre cena","13",df.parse("10/01/2022"),df.parse("08/10/2002"),0," ");
+        listado.addNodo(nuevo4);
+        
+        listado.addArista(nuevo, nuevo2, 0);
+        
+        String arista = listado.getDetalleAristas();
+        assertNotEquals("Antes va: cena ,despues de: 0 dias, Sigue: desayuno", arista);
+    }
 }
