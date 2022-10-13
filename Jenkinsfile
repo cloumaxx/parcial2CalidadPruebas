@@ -29,7 +29,9 @@ pipeline {
 		}
 		post {
 			always {
-				emailext body: 'Build completed', subject: 'Build completed', to: 'juancho1198@gmail.com'
+				mail to: 'juancho1198@gmail.com',
+				subject: 'Jenkins Pipeline -> Build Completed',
+				body: 'Build Completed OK'
 			}
-		}
+		}	
 }
