@@ -23,7 +23,7 @@ pipeline {
 			steps {
 				sh 'mvn install'
 				sh 'echo $PWD'
-				sh 'mv target/*.jar /home/outputJAR'
+				sh 'mv target/*.war /home/outputJAR'
 	    		}
 			}
 		}
