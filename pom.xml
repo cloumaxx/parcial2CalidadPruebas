@@ -76,12 +76,5 @@
     </pluginManagement>
 </build>
 
-<distributionManagement>
-    <repository>
-	 <id> pruebasParcial2 </id>
-	 <name> Jenkins MVN Pipeline </name>
-	 <url>https://github.com/cloumaxx/parcial2Calidad</url>
-       </repository>
-   </distributionManagement>
 
 </project>
