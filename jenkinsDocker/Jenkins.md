@@ -10,33 +10,9 @@ docker network create jenkins
 # afuera del contenedor de jenkins
 # (poder localizarlo con desde otro)
 
-# necesitamos meter docker dentro de docker
-# gracias a docker, podemos hacer eso
 
-# Bajamos la imagen de docker
-docker pull docker:dind
+Nos tocará crear una Dockerfile para mover la imagen de jenkins acorde al contenedor desde el que lo vamos a usar.
 
-
-# Ahora le damos hello container 
-
-docker run \
---name jenkins-docker \
---rm \
---detach \
---privileged \
---network jenkins \
---env DOCKER_TLS_CERTDIR=/certs \
---network-alias docker \
---volume jenkins-data:/var/jenkins-home \
---volume jenkins-docker-certs:/certs/client \
---publish 2376:2376 \
---publish 3000:3000 --publish 5000:5000 \
-docker:dind \
---storage-driver overlay2
-
-```
-
-Ya aqui tenemos nuestro contenedor donde vamos a meter jenkins, nos tocará crear una Dockerfile para mover la imagen de jenkins acorde al contenedor desde el que lo vamos a usar.
 
 ```Dockerfile
 FROM jenkins/jenkins
@@ -81,25 +57,22 @@ jenkinsblue
 
 ```
 
-
-La Jenkinsfile es la manera programatica de expresar la pipeline en terminos claros de pasos. Acá está una suave con maven:
+---
+##### Jenkinsfile
+La Jenkinsfile es la manera programatica de expresar la pipeline en terminos claros de pasos. Acá está la que usamos con maven:
 
 ```bash
 
 pipeline {
-    agent {
-		docker {
-	    	image 'maven:3.8.3-adoptopenjdk-11'
-	    	args '-v /root/.m2:/root/.m2'
-		}
+    agent any
+    options {
+	    skipStagesAfterUnstable()
+		timeout(time: 15, unit: 'MINUTES')
     }
-	optipms {
-		skipStagesAfterUnstable()
-	}
     stages {
 		stage('Build') {
 			steps {
-			sh 'mvn -B -DskipTests clean package'
+				sh 'cd /home && mvn -B -DskipTests clean package'
 	    	}
 		}
 		stage('Test') {
@@ -114,9 +87,35 @@ pipeline {
 		}
 		stage('Deliver') {
 			steps {
-				sh './jenkinsDocker/deliver.sh'
+				sh 'mvn install'
+				sh 'echo $PWD'
+				sh 'mv target/*.war /home/outputJAR'
+	    		}
 			}
 		}
-    }
+		post {
+			always {
+				echo 'Test, Build and Deliver completed'
+			}
+			success {
+				mail to: 'juancho1198@gmail.com',
+				subject: 'Jenkins Pipeline - Success',
+				body: 'Build Completed: Status -> OK'
+			}
+			unstable {
+				mail to: 'juancho1198@gmail.com',
+				subject: 'Jenkins Pipeline - Unstable',
+				body: 'Build Completed: Status -> Unstable!'
+			}
+			failure {
+				mail to: 'juancho1198@gmail.com',
+				subject: 'Jenkins Pipeline - Failure',
+				body: 'Build Completed: Status -> PAILANDERS PEPE'
+			}
+			changed {
+				echo 'Build Completed: Status -> Changed'
+				echo 'Pilas mano'
+			}		
+		}	
 }
 ```

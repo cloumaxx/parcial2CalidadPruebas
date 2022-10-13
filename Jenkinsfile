@@ -2,6 +2,7 @@ pipeline {
     agent any
     options {
 	    skipStagesAfterUnstable()
+		timeout(time: 15, unit: 'MINUTES')
     }
     stages {
 		stage('Build') {
@@ -29,9 +30,26 @@ pipeline {
 		}
 		post {
 			always {
-				mail to: 'juancho1198@gmail.com',
-				subject: 'Jenkins Pipeline -> Build Completed',
-				body: 'Build Completed OK'
+				echo 'Test, Build and Deliver completed'
 			}
+			success {
+				mail to: 'juancho1198@gmail.com',
+				subject: 'Jenkins Pipeline - Success',
+				body: 'Build Completed: Status -> OK'
+			}
+			unstable {
+				mail to: 'juancho1198@gmail.com',
+				subject: 'Jenkins Pipeline - Unstable',
+				body: 'Build Completed: Status -> Unstable!'
+			}
+			failure {
+				mail to: 'juancho1198@gmail.com',
+				subject: 'Jenkins Pipeline - Failure',
+				body: 'Build Completed: Status -> PAILANDERS PEPE'
+			}
+			changed {
+				echo 'Build Completed: Status -> Changed'
+				echo 'Pilas mano'
+			}		
 		}	
 }
