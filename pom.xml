@@ -80,7 +80,7 @@
     <repository>
 	 <id> pruebasParcial2 </id>
 	 <name> Jenkins MVN Pipeline </name>
-	 <url>localhost:8080/repository/maven-releases</url>
+	 <url>https://github.com/cloumaxx/parcial2Calidad</url>
        </repository>
 </distributionManagement>
 
