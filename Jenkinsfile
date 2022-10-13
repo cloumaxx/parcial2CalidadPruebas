@@ -1,7 +1,7 @@
 pipeline {
     agent {
 		docker {
-	    	image 'maven:3.8.3-adoptopenjdk-11'
+	    	image 'maven:3.8.6-openjdk-11'
 	    	args '-v /root/.m2:/root/.m2'
 		}
     }
@@ -11,7 +11,7 @@ pipeline {
     stages {
 		stage('Build') {
 			steps {
-			sh 'mvn -B -DskipTests clean package'
+				sh 'mvn -B -DskipTests clean package'
 	    	}
 		}
 		stage('Test') {
