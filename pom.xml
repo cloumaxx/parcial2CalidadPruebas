@@ -11,7 +11,7 @@
 
   <name>parcial2Calidad Maven Webapp</name>
   <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
+  <url>https://github.com/cloumaxx/parcial2CalidadPruebas</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -69,7 +69,7 @@
        <repository>
          <id>internal.repo</id>
          <name>Internal repo</name>
-	 <url>/home/pom.xml</url>
+	 <url>https://github.com/cloumaxx/parcial2Calidad</url>
        </repository>
    </distributionManagement>
 
