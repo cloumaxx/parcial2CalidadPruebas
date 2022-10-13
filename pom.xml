@@ -76,5 +76,12 @@
     </pluginManagement>
 </build>
 
+<distributionManagement>
+    <repository>
+	 <id> pruebasParcial2 </id>
+	 <name> Jenkins MVN Pipeline </name>
+	 <url>localhost:8080/repository/maven-releases</url>
+       </repository>
+</distributionManagement>
 
 </project>
