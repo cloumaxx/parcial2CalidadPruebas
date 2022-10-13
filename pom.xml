@@ -69,7 +69,7 @@
        <repository>
          <id>internal.repo</id>
          <name>Internal repo</name>
-	 <url>/home/</url>
+	 <url>/home/pom.xml</url>
        </repository>
    </distributionManagement>
 
