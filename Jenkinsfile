@@ -22,6 +22,8 @@ pipeline {
 		stage('Deliver') {
 			steps {
 				sh 'mvn install'
+				sh 'mv target/*.jar /home/outputJAR'
+	    	}
 			}
 		}
     }
