@@ -67,8 +67,6 @@
 
 <distributionManagement>
        <repository>
-         <id>internal.repo</id>
-         <name>Internal repo</name>
 	 <url>https://github.com/cloumaxx/parcial2Calidad</url>
        </repository>
    </distributionManagement>
