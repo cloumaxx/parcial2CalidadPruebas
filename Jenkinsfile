@@ -27,4 +27,9 @@ pipeline {
 	    		}
 			}
 		}
+		post {
+			always {
+				emailext body: 'Build completed', subject: 'Build completed', to: 'juancho1198@gmail.com'
+			}
+		}
 }
