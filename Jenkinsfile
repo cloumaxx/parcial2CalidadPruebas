@@ -3,9 +3,6 @@ pipeline {
     options {
 	    skipStagesAfterUnstable()
     }
-	tools {
-		jdk 'openjdk-11'
-	}
     stages {
 		stage('Build') {
 			steps {
