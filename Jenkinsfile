@@ -3,6 +3,9 @@ pipeline {
     options {
 	    skipStagesAfterUnstable()
     }
+	tools {
+		jdk 'openjdk-11'
+	}
     stages {
 		stage('Build') {
 			steps {
@@ -21,7 +24,7 @@ pipeline {
 		}
 		stage('Deliver') {
 			steps {
-				sh 'mvn deploy'
+				sh 'mvn install'
 			}
 		}
     }
