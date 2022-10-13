@@ -21,7 +21,7 @@ pipeline {
 		}
 		stage('Deliver') {
 			steps {
-				sh 'home/jenkinsDocker/deliver.sh'
+				sh 'mvn clean deploy'
 			}
 		}
     }
